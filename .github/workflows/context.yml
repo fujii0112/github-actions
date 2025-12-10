@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       WORKSPACE: ${{github.workspace}}
-      RUNNER_OS: ${{runner.os}}
     steps:
+      - env:
+          RUNNER_OS: ${{runner.os}}
       - run: echo "${WORKSPACE} ${RUNNER_OS}"
