@@ -6,6 +6,6 @@ jobs:
     env:
       WORKSPACE: ${{github.workspace}}
     steps:
-      - env:
-          RUNNER_OS: ${{runner.os}}
       - run: echo "${WORKSPACE} ${RUNNER_OS}"
+        env:
+          RUNNER_OS: ${{ runner.os }}"
