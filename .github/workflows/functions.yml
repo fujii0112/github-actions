@@ -2,7 +2,12 @@ name: Functions
 run-name: Run by @${{ github.actor }}
 on: push
 jobs:
-  compare:
+ skip-or-run-2:
+    if: ${{ github.actor == 'xxx' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello"
+ compare:
     runs-on: ubuntu-latest
     steps:
       - run: printenv | grep '_FUNC'
@@ -17,12 +22,6 @@ jobs:
         env:
           FORMAT_FUNC: ${{ format('{0}, {1}.', 'Hi', 'world') }}
           JOIN_FUNC: ${{ join(github.event.*.html_url, ',') }}
-  dump:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "${CONTEXT}"
-        env:
-          CONTEXT: ${{ toJSON(github) }}
   hash:
     runs-on: ubuntu-latest
     steps:
@@ -41,11 +40,6 @@ jobs:
       - run: exit 1
       - run: echo "FAILED!!"
         if: ${{ failure() }}
-  skip-or-run-2:
-    if: ${{ github.actor == 'xxx' }}
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Hello"
   print:
     name: Supre Useful Job
     runs-on: ubuntu-latest
