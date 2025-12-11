@@ -1,0 +1,18 @@
+name: Share data
+on: push
+jobs:
+  share-output:
+    name: Use GITHUB_OUTPUT
+    runs-on: ubuntu-latest
+    steps:
+      - id: source
+        run: echo "result=Hello" >> "${GITHUB_OUTPUT}"
+      - env:
+          RESULT: ${{ steps.source.outputs.result }}
+        run: echo "${RESULT}"
+  share-env:
+    name: Use GITHUB_ENV
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "RESULT=hello" >> "${GITHUB_ENV}"
+      - run: echo "${RESULT}"
