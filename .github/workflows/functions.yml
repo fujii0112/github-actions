@@ -2,12 +2,12 @@ name: Functions
 run-name: Run by @${{ github.actor }}
 on: push
 jobs:
- skip-or-run-2:
+  skip-or-run-2:
     if: ${{ github.actor == 'xxx' }}
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hello"
- compare:
+  compare:
     runs-on: ubuntu-latest
     steps:
       - run: printenv | grep '_FUNC'
