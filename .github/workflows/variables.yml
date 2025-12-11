@@ -1,0 +1,12 @@
+name: Variables
+on: push
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    env:
+      USERNAME: ${{ vars.USERNAME }}
+      DUMMY: ${{ secrets.DUMMY }}
+    steps:
+      - run: echo "${USERNAME}"
+      - run: echo "${DUMMY}"
+      - run: echo "${DUMMY:0:1} ${DUMMY#?}" # マスクされない
